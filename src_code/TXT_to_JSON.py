@@ -1,0 +1,25 @@
+import json
+import os
+
+# Configuration
+input_filename = "words_alpha.txt"
+output_filename = "output.json"
+
+json_data = []
+
+# Read the text file and parse each line
+with open(input_filename, "r", encoding="utf-8") as file:
+    for index, line in enumerate(file, start=1):
+        # Strip whitespace and skip empty lines
+        clean_line = line.strip()
+        if not clean_line:
+            continue
+
+        # Append structured object to our list
+        json_data.append({"id": index, "content": clean_line})
+
+# Save the entire list into a single JSON file
+with open(output_filename, "w", encoding="utf-8") as json_file:
+    json.dump(json_data, json_file, indent=4)
+
+print(f"Successfully converted all lines into '{output_filename}'.")
